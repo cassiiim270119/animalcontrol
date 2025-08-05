@@ -39,5 +39,6 @@ out/
 ### Gradle ###
 gradle
 volume
-gradlew
-gradlew.bat
+
+!**/gradlew
+!gradlew.bat

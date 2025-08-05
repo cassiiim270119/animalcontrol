@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.1'
 	id 'io.spring.dependency-management' version '1.1.0'
+    id "org.jetbrains.kotlin.jvm" version "1.8.22"
 }
 
 group = 'com.br.sousa.cassiano'
@@ -26,7 +27,7 @@ dependencies {
 	implementation platform('software.amazon.awssdk:bom:2.20.56')
 	implementation 'software.amazon.awssdk:ssm'
 	implementation 'org.springdoc:springdoc-openapi-ui:1.7.0'
-    implementation 'com.openai:openai-java:3.0.0'
+    implementation 'com.openai:openai-java:0.31.0'
 
 
 	compileOnly 'org.projectlombok:lombok'

@@ -1,11 +1,18 @@
 package com.br.sousa.cassiano.animalcontrol.usecase.usecase;
 
 import com.br.sousa.cassiano.animalcontrol.domain.Animal;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.models.ChatCompletion;
+import com.openai.models.ChatCompletionCreateParams;
+import com.openai.models.ChatModel;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import com.openai.client.OpenAIClient;
 
 import java.util.*;
+
+import static com.br.sousa.cassiano.animalcontrol.domain.util.GeneralConstants.OPENAI_KEY;
 
 
 @Service
@@ -35,6 +42,17 @@ public class InsertAnimal {
                 .childrens(new HashSet<>(List.of(new Animal())))
                 .build())));
         log.info("m=InsertAnimal.execute, status=end, timeElapsed={}ms", (System.currentTimeMillis() - initialTime));
+
+        OpenAIClient client = OpenAIOkHttpClient.builder().apiKey(OPENAI_KEY).build();
+        ChatCompletionCreateParams params = ChatCompletionCreateParams.builder()
+                .addUserMessage("Me responda esse teste")
+                .model(ChatModel.O3_MINI)
+                .build();
+        ChatCompletion chatCompletion = client.chat().completions().create(params);
+
+        log.info("m=InsertAnimal.execute, status=openaiResponse, response={}", chatCompletion.toString());
+        log.info("m=InsertAnimal.execute, status=openaiResponse2, response={}", chatCompletion.choices().get(0).message().content());
+
         return animal;
     }
 }
