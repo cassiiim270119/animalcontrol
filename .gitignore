@@ -37,6 +37,7 @@ out/
 .vscode/
 
 ### Gradle ###
-build.gradle
 gradle
 volume
+gradlew
+gradlew.bat
